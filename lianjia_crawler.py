@@ -12,7 +12,8 @@ from fake_useragent import UserAgent
 ua = UserAgent()
 
 
-async def requests(url):
+async def get_page(url):
+    """下载页面"""
     async with aiohttp.ClientSession() as session:
         async with session.get(url, headers={"User-Agent": ua.random}) as rep:
             content = await rep.text()
@@ -20,6 +21,7 @@ async def requests(url):
 
 
 def parse_root_page(url, content):
+    """解析列表页"""
     if url is None or content is None:
         return
 
@@ -46,9 +48,10 @@ def parse_root_page(url, content):
 
 
 async def main():
+    """主函数"""
     for i in range(500):
         base_url = "https://bj.lianjia.com/zufang/pg{}/".format(i)
-        content = await requests(base_url)
+        content = await get_page(base_url)
         parse_root_page(base_url, content)
 
 
