@@ -13,7 +13,10 @@ ua = UserAgent()
 
 
 async def get_page(url):
-    """下载页面"""
+    """
+    下载页面
+    :param url: 页面url
+    """
     async with aiohttp.ClientSession() as session:
         async with session.get(url, headers={"User-Agent": ua.random}) as rep:
             content = await rep.text()
@@ -21,7 +24,12 @@ async def get_page(url):
 
 
 def parse_root_page(url, content):
-    """解析列表页"""
+    """
+    解析列表页
+    :param url:页面url
+    :param content: 网页内容
+
+    """
     if url is None or content is None:
         return
 
