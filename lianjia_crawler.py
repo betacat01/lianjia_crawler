@@ -54,7 +54,10 @@ def parse_root_page(url, content):
         # yield self.parse_detail_page(meta={"items": items})
         print(items)
 
-
+def parse_detail_page(url, content):
+	"""解析详情页"""
+	pass
+	
 async def main():
     """主函数"""
     for i in range(500):
